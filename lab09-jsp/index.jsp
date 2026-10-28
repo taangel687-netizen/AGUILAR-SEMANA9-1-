@@ -1,0 +1,44 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%!
+  // Ciclo de vida JSP: estos métodos aparecen en logs/catalina.out
+  public void jspInit() {
+    System.out.println("[lab09] index.jsp -> jspInit() (instanciación)");
+  }
+  public void jspDestroy() {
+    System.out.println("[lab09] index.jsp -> jspDestroy() (destrucción)");
+  }
+%>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lab 09 - Formulario JSP</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 480px; margin: 2rem auto; padding: 0 1rem; }
+    label { display: block; margin-top: 1rem; font-weight: bold; }
+    input, textarea { width: 100%; padding: .5rem; box-sizing: border-box; }
+    button { margin-top: 1.5rem; padding: .6rem 1.2rem; }
+  </style>
+</head>
+<body>
+  <h1>Lab 09 - JSP</h1>
+  <p>Cliente (navegador) &rarr; Tomcat (contenedor de servlets)</p>
+  <form action="procesar.jsp" method="post">
+    <label for="nombre">Nombre completo</label>
+    <input type="text" id="nombre" name="nombre" required maxlength="60">
+
+    <label for="email">Correo electrónico</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="edad">Edad</label>
+    <input type="number" id="edad" name="edad" required min="16" max="100">
+
+    <label for="mensaje">Mensaje</label>
+    <textarea id="mensaje" name="mensaje" rows="4" maxlength="300"></textarea>
+
+    <button type="submit">Enviar (POST)</button>
+  </form>
+  <p>Hora del servidor: <%= new java.util.Date() %></p>
+</body>
+</html>
